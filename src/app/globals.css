@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Background gradient like VSCode */
+body {
+  background: radial-gradient(circle at top left, #1e1e2e, #121212);
+  color: #ffffff;
+  font-family: monospace;
+}
+
+/* Glass effect for editor */
+.glass-panel {
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
