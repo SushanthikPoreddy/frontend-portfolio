@@ -53,31 +53,30 @@ const projects: Project[] = [
     image: "/Health_detection.png",
   },
   {
-  id: "4",
-  year: "2018",
-  title: "Pill Reminder App",
-  fileName: "PillReminderApp.tsx",
-  description:
-    "An Android application designed with elderly users in mind, featuring a clean UI for scheduling pill reminders, OCR-based prescription scanning, and photo-based tablet recognition.",
-  tech: ["Android Studio", "Java", "XML", "Mobile Vision API", "OCR", "SQLite", "Material Design"],
-  achievements: [
-    "Designed a simple, senior-friendly front-end interface with large buttons, color-coded pill schedules, and clean weekly views",
-    "Integrated Google's Mobile Vision API for OCR to auto-extract prescription data from images",
-    "Implemented custom alarm manager with voice prompts for medication intake reminders",
-    "Developed UI modules: Add Tablets, Capture Image, Scan Prescription, Pillbox Grid, Weekly Calendar, and Settings",
-    "Ensured intuitive navigation between modules with persistent data handling via SQLite",
-  ],
-  type: "project",
-},
+    id: "4",
+    year: "2018",
+    title: "Pill Reminder App",
+    fileName: "PillReminderApp.tsx",
+    description:
+      "Android app with senior-friendly UI for pill schedules, OCR-based prescription scanning, and photo-based tablet recognition.",
+    tech: ["Android Studio", "Java", "XML", "Mobile Vision API", "OCR", "SQLite", "Material Design"],
+    achievements: [
+      "Large, accessible controls and color-coded schedules",
+      "OCR to auto-extract prescription details",
+      "Custom alarm manager with voice prompts",
+      "Clean navigation with persistent data via SQLite",
+    ],
+    type: "project",
+  },
 ];
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   return (
-    <div className="flex h-full">
+    <div className="flex flex-col lg:flex-row h-full">
       {/* Timeline Sidebar */}
-      <div className="w-1/4 bg-[#252526] p-6 border-r border-gray-700 overflow-y-auto">
+      <div className="w-full lg:w-1/4 bg-[#252526] p-6 border-b lg:border-b-0 lg:border-r border-gray-700 overflow-y-auto">
         <h2 className="text-green-400 font-bold mb-6">Commit History</h2>
         <div className="relative border-l-2 border-gray-600 ml-3">
           {projects.map((project, index) => (
@@ -87,22 +86,19 @@ export default function Projects() {
               onClick={() => setActiveProject(project)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15 }}
+              transition={{ delay: index * 0.12 }}
             >
               <span
-                className={`absolute -left-3 flex items-center justify-center w-5 h-5 border rounded-full transition
-                  ${
-                    project.type === "certification"
-                      ? "bg-yellow-600 border-yellow-400"
-                      : "bg-gray-800 border-gray-400 group-hover:bg-green-500"
-                  }`}
+                className={`absolute -left-3 flex items-center justify-center w-5 h-5 border rounded-full transition ${
+                  project.type === "certification"
+                    ? "bg-yellow-600 border-yellow-400"
+                    : "bg-gray-800 border-gray-400 group-hover:bg-green-500"
+                }`}
               >
                 <FaCircle className="text-xs text-gray-300 group-hover:text-white" />
               </span>
 
-              <h3 className="text-white font-semibold group-hover:text-green-400">
-                {project.title}
-              </h3>
+              <h3 className="text-white font-semibold group-hover:text-green-400">{project.title}</h3>
               <p className="text-gray-400 text-sm">{project.year}</p>
             </motion.div>
           ))}
@@ -110,18 +106,15 @@ export default function Projects() {
       </div>
 
       {/* Editor Pane */}
-      <div className="flex-1 bg-[#1e1e1e] p-8 overflow-y-auto">
+      <div className="flex-1 bg-[#1e1e1e] p-4 sm:p-6 overflow-y-auto">
         {activeProject ? (
           <motion.div
             key={activeProject.id}
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.35 }}
           >
-            <h2 className="text-blue-400 text-xl font-bold mb-4">
-              {activeProject.fileName}
-            </h2>
-
+            <h2 className="text-blue-400 text-xl font-bold mb-4">{activeProject.fileName}</h2>
             <p className="text-gray-300 mb-4">{activeProject.description}</p>
 
             <div className="mb-4">
@@ -129,10 +122,8 @@ export default function Projects() {
               <div className="flex flex-wrap gap-2">
                 {activeProject.tech.map((tech, i) => (
                   <span
-                    key={i}
-                    className="px-3 py-1 rounded-lg bg-gray-700 text-sm text-gray-200 
-  transition duration-300 transform hover:scale-105 
-  hover:bg-gray-800 hover:text-green-400 hover:shadow-[0_0_10px_#22c55e]"
+                    key={`${activeProject.id}-tech-${i}`}
+                    className="px-3 py-1 rounded-lg bg-gray-700 text-sm text-gray-200 transition duration-300 transform hover:scale-105 hover:bg-gray-800 hover:text-green-400 hover:shadow-[0_0_10px_#22c55e]"
                   >
                     {tech}
                   </span>
@@ -140,14 +131,16 @@ export default function Projects() {
               </div>
             </div>
 
-            <div>
-              <h4 className="text-green-400 font-semibold mb-2">Key Achievements:</h4>
-              <ul className="list-disc list-inside space-y-2 text-gray-300">
-                {activeProject.achievements.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-            </div>
+            {!!activeProject.achievements?.length && (
+              <div>
+                <h4 className="text-green-400 font-semibold mb-2">Key Achievements:</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  {activeProject.achievements.map((point, i) => (
+                    <li key={`${activeProject.id}-ach-${i}`}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {activeProject.image && (
               <div className="mt-6">
@@ -155,15 +148,13 @@ export default function Projects() {
                 <img
                   src={activeProject.image}
                   alt={activeProject.title}
-                  className="rounded-lg border border-gray-600 shadow-lg hover:scale-[1.02] transition"
+                  className="rounded-lg border border-gray-600 shadow-lg hover:scale-[1.02] transition max-w-full h-auto"
                 />
               </div>
             )}
           </motion.div>
         ) : (
-          <p className="text-gray-500 italic">
-            ⬅ Select a commit to view project details
-          </p>
+          <p className="text-gray-500 italic">⬅ Select a commit to view project details</p>
         )}
       </div>
     </div>

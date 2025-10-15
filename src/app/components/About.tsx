@@ -12,99 +12,110 @@ export default function About() {
   ];
 
   return (
-    <div className="h-full w-full bg-[#0d1117] text-gray-100 font-mono flex flex-col p-8 overflow-auto items-ceneter">
-      {/* Split Layout */}
-      <div className="flex flex-col md:flex-row gap-8 items-start">
-        
-        {/* Left Side: Content */}
-        <div className="flex-1">
+    <section
+      id="about"
+      className="min-h-screen w-full bg-[#0d1117] text-gray-100 font-mono flex flex-col justify-center px-4 sm:px-6 md:px-10 py-10"
+    >
+      <div className="flex flex-col-reverse md:flex-row gap-10 items-center md:items-start max-w-6xl mx-auto">
+        {/* Left Content */}
+        <div className="flex-1 min-w-0">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center md:text-left mt-4 md:mt-0">
+            Sushanthik Reddy
+          </h1>
+          <p className="text-gray-400 mt-2 text-sm sm:text-base text-center md:text-left">
+            Front-End Developer | Crafting Responsive UIs
+          </p>
 
-          <h1 className="mt-4 text-3xl font-bold text-white">Sushanthik Reddy</h1> <p className="text-gray-400 mt-1"> Front-End Developer | Crafting Responsive UIs </p>
-          {/* Badges Section */}
-          <div className="mt-4 flex flex-wrap gap-3 mb-8">
+          {/* Tech Badges */}
+          <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3">
             {badges.map((badge) => (
               <span
                 key={badge.name}
-                className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${badge.color} ${badge.textColor} shadow-md shadow-black/20 tracking-wide`}
+                className={`px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r ${badge.color} ${badge.textColor} shadow-md shadow-black/30`}
               >
                 ● {badge.name.toUpperCase()}
               </span>
             ))}
           </div>
 
-          {/* README Style Content */}
-          <div className="prose prose-invert max-w-none">
-            <h2>## About Me</h2>
-<p>
-  Hello! I'm <span className="text-green-400 font-bold">Sushanthik Reddy</span>,  
-  an experienced <span className="text-blue-400">Front-End Developer</span> with 6+ years of success
-  building modern, high-performance web applications.  
-  My expertise spans <span className="text-pink-400">React.js</span>, <span className="text-red-400">Angular</span>, 
-  <span className="text-indigo-400"> Next.js</span>, and responsive UI development, with a strong focus on 
-  pixel-perfect design, accessibility (WCAG 2.1), and seamless API integrations.
-</p>
+          {/* README-style content */}
+          <div className="mt-6 text-[13px] sm:text-sm leading-relaxed space-y-4">
+            <h2 className="text-base sm:text-lg text-green-400 font-semibold">## About Me</h2>
+            <p>
+              Hello! I&apos;m{" "}
+              <span className="text-green-400 font-bold">Sushanthik Reddy</span>, an experienced{" "}
+              <span className="text-blue-400">Front-End Developer</span> with 6+ years of success
+              building modern, high-performance web applications. My expertise spans{" "}
+              <span className="text-pink-400">React.js</span>,{" "}
+              <span className="text-red-400">Angular</span>, and{" "}
+              <span className="text-indigo-400">Next.js</span> — focusing on pixel-perfect design,
+              accessibility (WCAG 2.1), and seamless API integrations.
+            </p>
 
-<p className="mt-4">
-  Over the years, I’ve delivered solutions for organizations ranging from 
-  <span className="text-yellow-300"> First Home Mortgage</span>, where I built dynamic dashboards with 
-  <span className="text-blue-400"> React.js & Mapbox</span>, to 
-  <span className="text-yellow-300"> Zoho Corp</span>, where I modernized enterprise apps using 
-  <span className="text-red-400"> Angular</span> and <span className="text-blue-400"> React</span>.  
-  My work consistently improves performance, accessibility, and user engagement.
-</p>
+            <p>
+              I’ve delivered solutions for{" "}
+              <span className="text-yellow-300">First Home Mortgage</span> (dynamic dashboards with{" "}
+              <span className="text-blue-400">React &amp; Mapbox</span>) and{" "}
+              <span className="text-yellow-300">Zoho Corp</span> (modernized enterprise UIs using{" "}
+              <span className="text-red-400">Angular</span> &amp; 
+              <span className="text-blue-400">React</span>). My work consistently enhances
+              performance, accessibility, and engagement.
+            </p>
 
-<p className="mt-4">
-  I thrive in Agile teams, collaborating with designers, QA, and product managers to 
-  deliver scalable, maintainable codebases. Whether transforming Figma mockups into 
-  production-ready UIs, increasing test coverage with <span className="text-pink-400">Jest</span> and 
-  <span className="text-pink-400"> Cypress</span>, or mentoring junior developers, I bring both 
-  technical depth and a passion for collaboration.
-</p>
+            <p>
+              I thrive in Agile teams, collaborating with designers, QA, and PMs to build scalable,
+              maintainable codebases. Whether transforming Figma mockups, boosting test coverage
+              with <span className="text-pink-400">Jest</span> &amp; 
+              <span className="text-pink-400">Cypress</span>, or mentoring developers — I bring
+              strong technical depth and collaboration skills.
+            </p>
 
-<p className="mt-4">
-  Outside of coding, I enjoy exploring the latest front-end innovations, contributing to 
-  open-source, and mentoring upcoming developers. I believe in continuous learning 
-  and pushing the boundaries of what modern web experiences can achieve.
-</p>
+            <p>
+              Outside of work, I love exploring front-end innovations, contributing to open source,
+              and mentoring upcoming developers. I believe in continuous learning and pushing the
+              limits of modern web experiences.
+            </p>
 
-            <h2 className="mt-6">## Profile Overview</h2>
-<pre className="bg-[#161b22] p-6 rounded-lg text-sm overflow-x-auto border border-gray-700">
+            {/* JSON Section */}
+            <h2 className="text-base sm:text-lg text-green-400 font-semibold mt-6">
+              ## Profile Overview
+            </h2>
+            <div className="bg-[#161b22] p-4 sm:p-6 rounded-lg text-xs sm:text-sm overflow-x-auto border border-gray-700">
+              <pre className="whitespace-pre-wrap">
 {`{
   "name": "Sushanthik Reddy",
   "role": "Front-End Developer",
   "location": "United States",
-  "experience": [
-    "6+ years",
-    "First Home Mortgage",
-    "Zoho Corp",
-  ],
-  education: {
-      bachelors: "B.Tech in Computer Science, Guru Nanak Institutions (2016–2020)",
-      masters: "M.S. in Data Science, UMBC (2021–2023)",
-    },
+  "experience": ["6+ years", "First Home Mortgage", "Zoho Corp"],
+  "education": {
+    "bachelors": "B.Tech in Computer Science, GNITC (2016–2020)",
+    "masters": "M.S. in Data Science, UMBC (2021–2023)"
+  }
 }`}
-</pre>
+              </pre>
+            </div>
 
-            <h2 className="mt-6">## Current Focus</h2>
-            <ul className="list-disc pl-6">
+            <h2 className="text-base sm:text-lg text-green-400 font-semibold mt-6">
+              ## Current Focus
+            </h2>
+            <ul className="list-disc pl-5 sm:pl-8 space-y-1 text-[13px] sm:text-sm">
               <li>🌐 Scaling front-end apps with best practices</li>
-              <li>📈 Continuous learning & open-source contributions</li>
+              <li>📈 Continuous learning &amp; open-source contributions</li>
             </ul>
           </div>
         </div>
 
-        {/* Right Side: Big Profile Image */}
-        {/* Right Side: Profile Image with extra spacing */}
-<div className="flex-shrink-0 mt-12 md:mt-20">
-  <Image
-    src="/profile.jpeg"
-    alt="Sushanthik Reddy"
-    width={220}
-    height={220}
-    className="rounded-2xl border-4 border-gray-700 shadow-lg shadow-purple-500/30 object-cover"
-  />
-</div>
+        {/* Profile Image */}
+        <div className="flex-shrink-0 w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[220px] md:h-[220px] rounded-2xl overflow-hidden border-4 border-gray-700 shadow-lg shadow-purple-500/30">
+          <Image
+            src="/profile.jpeg"
+            alt="Sushanthik Reddy"
+            width={220}
+            height={220}
+            className="object-cover w-full h-full"
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -101,13 +101,13 @@ export default function JourneyTimeline() {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <div className="flex h-full">
+    <div className="flex flex-col lg:flex-row h-full">
       {/* Timeline Sidebar */}
-      <div className="w-1/4 bg-[#252526] p-6 border-r border-gray-700 overflow-y-auto">
-        <h2 className="text-green-400 font-bold mb-6">Commit History</h2>
+      <div className="w-full lg:w-1/4 bg-[#252526] p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-gray-700 overflow-y-auto">
+        <h2 className="text-green-400 font-bold mb-4 sm:mb-6 text-base sm:text-lg">Commit History</h2>
         <div className="relative border-l-2 border-gray-600 ml-3">
           {timeline.map((node, index) => (
-            <div key={node.id} className="mb-8 ml-6">
+            <div key={node.id} className="mb-6 sm:mb-8 ml-6">
               <motion.div
                 className="cursor-pointer group"
                 onClick={() => {
@@ -121,24 +121,23 @@ export default function JourneyTimeline() {
                 transition={{ delay: index * 0.15 }}
               >
                 <span
-                  className={`absolute -left-3 flex items-center justify-center w-5 h-5 border rounded-full transition ${
+                  className={`absolute -left-3 flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 border rounded-full transition ${
                     node.type === "education"
                       ? "bg-blue-600 border-blue-400"
                       : "bg-gray-800 border-gray-400 group-hover:bg-green-500"
                   }`}
                 >
-                  <FaCircle className="text-xs text-gray-300 group-hover:text-white" />
+                  <FaCircle className="text-[8px] sm:text-xs text-gray-300 group-hover:text-white" />
                 </span>
 
-                <h3 className="text-white font-semibold group-hover:text-green-400">
+                <h3 className="text-white text-sm sm:text-base font-semibold group-hover:text-green-400">
                   {node.title}
                 </h3>
-                <p className="text-gray-400 text-sm">{node.year}</p>
+                <p className="text-gray-400 text-xs sm:text-sm">{node.year}</p>
               </motion.div>
 
-              {/* Nested children */}
               {expanded === node.id && node.children && (
-                <div className="ml-6 mt-4 space-y-4 border-l border-gray-700 pl-4">
+                <div className="ml-6 mt-3 sm:mt-4 space-y-3 sm:space-y-4 border-l border-gray-700 pl-3 sm:pl-4">
                   {node.children.map((child, idx) => (
                     <motion.div
                       key={child.id}
@@ -148,7 +147,7 @@ export default function JourneyTimeline() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.1 }}
                     >
-                      <h4 className="text-purple-300 font-medium group-hover:text-purple-400">
+                      <h4 className="text-purple-300 text-sm sm:text-base font-medium group-hover:text-purple-400">
                         {child.title}
                       </h4>
                       <p className="text-gray-500 text-xs">{child.year}</p>
@@ -162,16 +161,15 @@ export default function JourneyTimeline() {
       </div>
 
       {/* Editor Pane */}
-      <div className="flex-1 bg-[#1e1e1e] p-8 overflow-y-auto">
+      <div className="flex-1 bg-[#1e1e1e] p-4 sm:p-6 lg:p-8 overflow-y-auto">
         {activeNode ? (
           activeNode.type === "education" ? (
-            // 👇 Education as Git Diff Transcript
             <motion.div
               key={activeNode.id}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className="font-mono space-y-6"
+              className="font-mono space-y-6 text-sm sm:text-base"
             >
               <div className="bg-[#1e1e1e] border border-gray-700 rounded-lg p-4">
                 <h3 className="text-blue-400 text-lg font-bold mb-2">
@@ -203,11 +201,11 @@ export default function JourneyTimeline() {
                 </div>
               </div>
 
-              <div className="bg-[#101010] border border-gray-700 rounded-lg p-4">
+              <div className="bg-[#101010] border border-gray-700 rounded-lg p-4 overflow-x-auto">
                 <h4 className="text-emerald-400 font-semibold mb-3">
                   Git Diff — Skills Gained
                 </h4>
-                <pre className="text-emerald-400">
+                <pre className="text-emerald-400 text-xs sm:text-sm">
                   + UI/UX Design Systems{"\n"}
                   + Advanced JavaScript & TypeScript{"\n"}
                   + React.js & Angular Frameworks{"\n"}
@@ -223,14 +221,14 @@ export default function JourneyTimeline() {
               </div>
             </motion.div>
           ) : activeNode.type === "role" && activeNode.children ? (
-            // Role overview with child projects
             <motion.div
               key={activeNode.id}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
+              className="text-sm sm:text-base"
             >
-              <h2 className="text-blue-400 text-xl font-bold mb-4">
+              <h2 className="text-blue-400 text-lg sm:text-xl font-bold mb-4">
                 {activeNode.fileName} — Project Overview
               </h2>
               <p className="text-gray-300 mb-6">{activeNode.description}</p>
@@ -253,14 +251,14 @@ export default function JourneyTimeline() {
               </p>
             </motion.div>
           ) : (
-            // Default project/role detailed view
             <motion.div
               key={activeNode.id}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
+              className="text-sm sm:text-base"
             >
-              <h2 className="text-blue-400 text-xl font-bold mb-4">
+              <h2 className="text-blue-400 text-lg sm:text-xl font-bold mb-4">
                 {activeNode.fileName}
               </h2>
               <p className="text-gray-300 mb-4">{activeNode.description}</p>
@@ -274,9 +272,7 @@ export default function JourneyTimeline() {
                     {activeNode.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-lg bg-gray-700 text-sm text-gray-200 
-  transition duration-300 transform hover:scale-105 
-  hover:bg-gray-800 hover:text-green-400 hover:shadow-[0_0_10px_#22c55e]"
+                        className="px-3 py-1 rounded-lg bg-gray-700 text-sm text-gray-200 transition duration-300 transform hover:scale-105 hover:bg-gray-800 hover:text-green-400 hover:shadow-[0_0_10px_#22c55e]"
                       >
                         {tech}
                       </span>
@@ -304,14 +300,14 @@ export default function JourneyTimeline() {
                   <img
                     src={activeNode.image}
                     alt={activeNode.title}
-                    className="rounded-lg border border-gray-600 shadow-lg hover:scale-[1.02] transition"
+                    className="rounded-lg border border-gray-600 shadow-lg hover:scale-[1.02] transition max-w-full h-auto"
                   />
                 </div>
               )}
             </motion.div>
           )
         ) : (
-          <p className="text-gray-500 italic">
+          <p className="text-gray-500 italic text-sm sm:text-base">
             ⬅ Select a commit to view details
           </p>
         )}

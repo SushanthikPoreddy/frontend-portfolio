@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 /* Background gradient like VSCode */
 body {
   background: radial-gradient(circle at top left, #1e1e2e, #121212);
@@ -16,4 +19,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+main {
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  scroll-snap-align: start;
 }

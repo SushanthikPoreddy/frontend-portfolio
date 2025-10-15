@@ -1,4 +1,5 @@
 "use client";
+
 import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
@@ -17,7 +18,6 @@ export default function EditorPane({
   const renderContent = () => {
     switch (activeFile) {
       case "Hero.tsx":
-        // ✅ give Hero the setter so the button works
         return <Hero setActiveFile={setActiveFile} />;
       case "About.tsx":
         return <About />;
@@ -36,5 +36,9 @@ export default function EditorPane({
     }
   };
 
-  return <div className="flex-1 bg-[#1e1e1e] p-6 overflow-auto">{renderContent()}</div>;
+  return (
+    <div className="flex-1 bg-[#1e1e1e] p-4 sm:p-6 overflow-auto min-w-0 min-h-0">
+      {renderContent()}
+    </div>
+  );
 }

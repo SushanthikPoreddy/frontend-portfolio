@@ -1,4 +1,3 @@
-// src/app/components/Contact.tsx
 "use client";
 import { motion } from "framer-motion";
 
@@ -34,13 +33,13 @@ export default function Contact() {
   ];
 
   return (
-    <div className="h-full w-full bg-[#0d1117] text-gray-200 font-mono p-8 overflow-auto">
+    <div className="h-full w-full bg-[#0d1117] text-gray-200 font-mono p-4 sm:p-8 overflow-auto">
       {/* Header like GitHub Issues */}
       <div className="flex items-center justify-between mb-6">
         <input
           type="text"
           placeholder="is:issue is:open"
-          className="bg-[#161b22] border border-gray-700 text-sm text-gray-300 px-3 py-2 rounded w-1/2 focus:outline-none focus:ring focus:ring-green-500"
+          className="bg-[#161b22] border border-gray-700 text-sm text-gray-300 px-3 py-2 rounded w-full sm:w-1/2 focus:outline-none focus:ring focus:ring-green-500"
         />
       </div>
 
@@ -53,18 +52,16 @@ export default function Contact() {
             key={issue.id}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: idx * 0.15 }}
+            transition={{ delay: idx * 0.12 }}
             className="bg-[#161b22] border border-gray-700 rounded-lg p-4 hover:border-green-500 transition"
           >
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
               <div>
-                <p className="text-sm text-gray-400">
-                  #{issue.id} [{issue.status}]
-                </p>
+                <p className="text-sm text-gray-400">#{issue.id} [{issue.status}]</p>
                 <h3 className="text-lg text-white mt-1">
                   {issue.icon} {issue.label}
                 </h3>
-                <p className="text-gray-400 text-sm mt-1">
+                <p className="text-gray-400 text-sm mt-1 break-all">
                   {issue.link ? (
                     <a
                       href={issue.link}
@@ -79,16 +76,15 @@ export default function Contact() {
                   )}
                 </p>
                 <p className="text-xs text-gray-500 mt-2">
-                  Opened just now by{" "}
-                  <span className="text-blue-400">you</span>
+                  Opened just now by <span className="text-blue-400">you</span>
                 </p>
               </div>
 
               {/* Tags */}
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 {issue.tags.map((tag) => (
                   <span
-                    key={tag}
+                    key={`${issue.id}-${tag}`}
                     className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
                       tag === "enhancement"
                         ? "bg-green-700 text-green-200"
